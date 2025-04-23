@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Detalles del Organismo</h1>
+
+{% if medidas_reportadas %}
+    <p><strong>Organismo ID:</strong> {{ medidas_reportadas.0.organismo_sectorial_id }}</p>
+    <p><strong>Nombre del Organismo:</strong> {{ medidas_reportadas.0.organismo_sectorial.nombre }}</p>
+
+    <h2>Medidas Reportadas</h2>
+    <ul>
+        {% for medida in medidas_reportadas %}
+        <li>
+            <strong>Medida ID:</strong> {{ medida.id }}<br>
+            <strong>Valor:</strong> {{ medida.valor }}<br>
+            <strong>Estado:</strong> {{ medida.estado }}<br>
+            <strong>Usuario Responsable:</strong> {{ medida.usuario_id }}<br>
+            <strong>Fecha de Creación:</strong> {{ medida.created_at }}
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay medidas reportadas para este organismo.</p>
+{% endif %}
+
+{% endblock %}
